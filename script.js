@@ -6,7 +6,14 @@ let gameCount = 1;
 
 function getHumanChoice() {
     const humanInput = prompt(`R, P or S?`);
-    return (humanInput.toLowerCase());
+    switch (humanInput) {
+        case `r`:
+            return (`rock`);
+        case `p`:
+            return (`paper`);
+        case `s`:
+            return (`scissor`);
+    }
 }
 
 function getRandom(a) {
@@ -33,10 +40,21 @@ function getComputerChoice() {
 }
 
 function playGame() {
-    console.log(`Game Round` + gameCount)
-    gameCount++;
-    if (gameCount == 5) {
-        console.log(`Last Game`);
+    for (let b = 1; b <= 5; b++) {
+        console.log(`Game Round #` + b)
+        if (b == 5) {
+            console.log(`Last Round`);
+        }
+        playRound();
+        if (b == 5) {
+            if (humanCount > computerCount) {
+                console.log(`You won this round`);
+            }
+            else if (humanCount < computerCount) { console.log(`Computer won this round`); }
+            else {
+                console.log(`It's a Tie round`);
+            }
+        }
     }
 }
 
@@ -60,27 +78,4 @@ function playRound() {
     }
 };
 
-for (let a = 0; a < 5; a++) {
-    playGame();
-    for (let b = 0; b < 5; b++) {
-        playRound();
-        if (b == 4) {
-            if (humanCount > computerCount) {
-                console.log(`You won this round`);
-            }
-            else if (humanCount < computerCount) { console.log(`Computer won this round`); }
-            else {
-                console.log(`It's a Tie round`);
-            }
-        }
-    }
-    if (a == 4) {
-        if (humanCount > computerCount) {
-            console.log(`You won this Game`);
-        }
-        else if (humanCount < computerCount) { console.log(`Computer won this Game`); }
-        else {
-            console.log(`It's a Tie Game`);
-        }
-    }
-}
+playGame();
