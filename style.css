@@ -30,15 +30,24 @@
     display: flex;
     flex-direction: row;
     padding: 12px;
-    justify-content: space-between;
+}
+
+.player-field,
+.computer-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 .rps-buttons {
     padding: 8px;
+    flex: 1;
+    font-size: large;
 }
 
 .selection-images {
-    width: 36px;
+    width: 48px;
     height: auto;
 }
 
@@ -46,6 +55,7 @@
 .paper-selection,
 .scissors-selection {
     display: flex;
+    align-items: center;
     gap: 8px;
     margin: 8px auto;
   }
