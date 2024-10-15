@@ -1,0 +1,52 @@
+* {
+    font-family: Roboto;
+}
+
+.body {
+    background-size: 100%;
+    background-color: aquamarine;
+}
+
+.main-page {
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+}
+
+.game-field {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    border-radius: 5px;
+    padding: 24px;
+    background-color: azure;
+}
+
+.header {
+    text-align: center;
+    }
+
+.players-fields {
+    display: flex;
+    flex-direction: row;
+    padding: 12px;
+    justify-content: space-between;
+}
+
+.rps-buttons {
+    padding: 8px;
+}
+
+.selection-images {
+    width: 36px;
+    height: auto;
+}
+
+.rock-selection,
+.paper-selection,
+.scissors-selection {
+    display: flex;
+    gap: 8px;
+    margin: 8px auto;
+  }
+  
