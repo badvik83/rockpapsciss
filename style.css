@@ -38,6 +38,7 @@
     height: 36px;
     font-weight: bold;
     font-size: large;
+    background-color: green;
     }
 
 .players-fields {
@@ -65,9 +66,7 @@
     height: auto;
 }
 
-.rock-selection,
-.paper-selection,
-.scissors-selection {
+.selection-buttons {
     display: flex;
     align-items: center;
     gap: 8px;

@@ -4,14 +4,28 @@ let gameCount = 1;
 
 
 const startGame = document.querySelector('#start-btn');
+
+// disabling all buttons until START is clicked
+function disableAllButtons() {
+    const disableAllBtns = document.querySelectorAll("button");
+    disableAllBtns.forEach((button) => {
+        if (button !== startGame) {
+            button.disabled = true;
+        }
+    });
+}
+
+disableAllButtons();
+
 startGame.addEventListener("click", startServices);
 
 function startServices() {
     alert("Let's ROCK!");
-    const startBtnContent = startGame.textContent;
     startGame.textContent = "STOP GAME";
+    startGame.style.backgroundColor = 'red';
 
     startGame.removeEventListener("click", startServices);
+
     startGame.addEventListener("click", stopServices);
 
     // Enable all buttons
@@ -29,6 +43,7 @@ function startServices() {
 function stopServices() {
     alert("Game Stopped");
     startGame.textContent = "START GAME";
+    startGame.style.backgroundColor = 'green';
     startGame.addEventListener("click", startServices);
 
     // Disable all other buttons on the page
@@ -42,6 +57,22 @@ function stopServices() {
 
 function playRound() {
 
+    const playerButtons = document.querySelectorAll(".player-field .rps-buttons");
+
+    playerButtons.forEach(button => {
+        button.addEventListener("click", (event) => {
+            const playersChoiceContent = event.target.textContent;
+            alert(`You threw ${playersChoiceContent}`);
+            showComputerChoice();
+        });
+    });
+
+
+}
+
+function showComputerChoice() {
+    const computerChoice = getComputerChoice();
+    alert(`Computer threw ${computerChoice}`);
 }
 
 function getRandom(a) {
