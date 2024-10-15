@@ -1,5 +1,7 @@
 * {
     font-family: Roboto;
+    margin: 0px;
+    padding: 0px;
 }
 
 .body {
@@ -22,8 +24,20 @@
     background-color: azure;
 }
 
+.intro-info {
+    margin: 16px auto;
+}
+
 .header {
     text-align: center;
+    }
+
+.start-button {
+    margin: 18px auto;
+    width: 20%;
+    height: 36px;
+    font-weight: bold;
+    font-size: large;
     }
 
 .players-fields {
@@ -60,3 +74,13 @@
     margin: 8px auto;
   }
   
+  .scoreboard {
+    text-align: center;
+  }
+
+  .scores {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    gap: 16px;
+  }

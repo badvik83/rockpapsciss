@@ -1,19 +1,47 @@
-console.log(`Hello World!`);
-
 let humanCount = 0;
 let computerCount = 0;
 let gameCount = 1;
 
-function getHumanChoice() {
-    const humanInput = prompt(`R, P or S?`);
-    switch (humanInput) {
-        case `r`:
-            return (`rock`);
-        case `p`:
-            return (`paper`);
-        case `s`:
-            return (`scissor`);
-    }
+
+const startGame = document.querySelector('#start-btn');
+startGame.addEventListener("click", startServices);
+
+function startServices() {
+    alert("Let's ROCK!");
+    const startBtnContent = startGame.textContent;
+    startGame.textContent = "STOP GAME";
+
+    startGame.removeEventListener("click", startServices);
+    startGame.addEventListener("click", stopServices);
+
+    // Enable all buttons
+    const allButtons = document.querySelectorAll("button");
+    allButtons.forEach((button) => {
+        button.disabled = false;
+    });
+
+    // This space is reserved for retrievieng the Number of Rounds from the DB
+    // This space is reserved for retrievieng Score from the DB
+    playRound();
+
+}
+
+function stopServices() {
+    alert("Game Stopped");
+    startGame.textContent = "START GAME";
+    startGame.addEventListener("click", startServices);
+
+    // Disable all other buttons on the page
+    const allButtons = document.querySelectorAll("button");
+    allButtons.forEach((button) => {
+        if (button !== startGame) {
+            button.disabled = true;
+        }
+    });
+}
+
+function playRound() {
+
 }
 
 function getRandom(a) {
@@ -33,49 +61,10 @@ function getComputerChoice() {
             break;
 
         case 2:
-            computerInput = `scissor`;
+            computerInput = `scissors`;
             break;
     }
     return computerInput;
 }
 
-function playGame() {
-    for (let b = 1; b <= 5; b++) {
-        console.log(`Game Round #` + b)
-        if (b == 5) {
-            console.log(`Last Round`);
-        }
-        playRound();
-        if (b == 5) {
-            if (humanCount > computerCount) {
-                console.log(`You won this round`);
-            }
-            else if (humanCount < computerCount) { console.log(`Computer won this round`); }
-            else {
-                console.log(`It's a Tie round`);
-            }
-        }
-    }
-}
 
-function playRound() {
-    const humanChoice = getHumanChoice();
-    const computerChoice = getComputerChoice();
-    console.log(computerChoice);
-
-    if (humanChoice == computerChoice) {
-        console.log(`It's a tie`);
-    }
-    else if ((humanChoice == `rock` && computerChoice == `paper`)
-        || (humanChoice == `paper` && computerChoice == `scissor`)
-        || (humanChoice == `scissor` && computerChoice == `rock`)) {
-        computerCount++;
-        console.log(`Computer won this time!`);
-    }
-    else {
-        humanCount++;
-        console.log(`You won this time!`);
-    }
-};
-
-playGame();
