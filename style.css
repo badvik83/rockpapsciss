@@ -25,7 +25,14 @@
 }
 
 .intro-info {
-    margin: 16px auto;
+    margin: 8px auto;
+    display: flex;
+    padding: 8px;
+    justify-content:center;
+}
+
+.current-score {
+    text-align: center;
 }
 
 .header {
@@ -82,4 +89,9 @@
     align-items: center;
     justify-content:center;
     gap: 16px;
+  }
+
+  .pc-choice-img {
+    width: 96px;
+    height: auto;
   }

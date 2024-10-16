@@ -1,6 +1,8 @@
-let humanCount = 0;
-let computerCount = 0;
+let playerWins = 0;
+let pcWins = 0;
 let gameCount = 1;
+let playersChoice = "";
+let pcChoice = "";
 
 
 const startGame = document.querySelector('#start-btn');
@@ -35,6 +37,12 @@ function startServices() {
     });
 
     // This space is reserved for retrievieng the Number of Rounds from the DB
+    //Temporary code
+    let currentScore = document.querySelector("#current-score");
+    const scoreContent = document.createElement("div");
+    currentScore.appendChild(scoreContent);
+    currentScore.textContent = gameCount;
+
     // This space is reserved for retrievieng Score from the DB
     playRound();
 
@@ -63,16 +71,46 @@ function playRound() {
         button.addEventListener("click", (event) => {
             const playersChoiceContent = event.target.textContent;
             alert(`You threw ${playersChoiceContent}`);
+            playersChoice = playersChoiceContent;
             showComputerChoice();
+
+            if (pcChoice != "") {
+                if (playersChoice == pcChoice) {
+                    alert("No one wins, it's a TIE");
+                }
+                else if ((playersChoice == "rock" && pcChoice == "scissors")
+                    || (playersChoice == "paper" && pcChoice == "rock")
+                    || (playersChoice == "scissors" && pcChoice == "paper")
+                ) {
+                    playerWins++;
+                    alert("Congratulations, You won!");
+                }
+                else {
+                    pcWins++;
+                    alert("Sorry, Computer won!");
+                }
+                gameCount++;
+            }
         });
     });
-
-
 }
 
 function showComputerChoice() {
     const computerChoice = getComputerChoice();
     alert(`Computer threw ${computerChoice}`);
+    var pcChoiceAnimation = document.querySelector("#computer-choice-animation");
+    pcChoiceAnimation.innerHTML = ""; // Clearing any previous animations
+    const imgElement = document.createElement('img');
+    imgElement.classList.add("pc-choice-img");
+
+    if (computerChoice === "rock") {
+        imgElement.src = "./images/rock_bg.png";
+    } else if (computerChoice === "paper") {
+        imgElement.src = "./images/paper_bg.png";
+    } else if (computerChoice === "scissors") {
+        imgElement.src = "./images/scissors_bg.png";
+    }
+    pcChoiceAnimation.appendChild(imgElement);
 }
 
 function getRandom(a) {
@@ -95,6 +133,7 @@ function getComputerChoice() {
             computerInput = `scissors`;
             break;
     }
+    pcChoice = computerInput;
     return computerInput;
 }
 
