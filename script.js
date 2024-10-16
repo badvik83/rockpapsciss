@@ -91,6 +91,11 @@ function playRound() {
                 }
                 gameCount++;
             }
+            // This is a temporary code for retrieving the Game count
+            let currentScore = document.querySelector("#current-score");
+            const scoreContent = document.createElement("div");
+            currentScore.appendChild(scoreContent);
+            currentScore.textContent = gameCount;
         });
     });
 }
