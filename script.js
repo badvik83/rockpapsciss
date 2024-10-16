@@ -25,7 +25,8 @@ function startServices() {
     alert("Let's ROCK!");
     startGame.textContent = "STOP GAME";
     startGame.style.backgroundColor = 'red';
-
+    
+    //removing eventlisteners to not duplicate the calls
     startGame.removeEventListener("click", startServices);
 
     startGame.addEventListener("click", stopServices);
@@ -52,6 +53,8 @@ function stopServices() {
     alert("Game Stopped");
     startGame.textContent = "START GAME";
     startGame.style.backgroundColor = 'green';
+    //removing eventlisteners to not duplicate the calls
+    startGame.removeEventListener("click", stopServices);
     startGame.addEventListener("click", startServices);
 
     // Disable all other buttons on the page
