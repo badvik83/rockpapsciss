@@ -8,16 +8,16 @@ let pcChoice = "";
 const startGame = document.querySelector('#start-btn');
 
 // disabling all buttons until START is clicked
-function disableAllButtons() {
-    const disableAllBtns = document.querySelectorAll("button");
-    disableAllBtns.forEach((button) => {
+function toggleButtons(state) {
+    const allButtons = document.querySelectorAll("button");
+    allButtons.forEach((button) => {
         if (button !== startGame) {
-            button.disabled = true;
+            button.disabled = state;
         }
     });
 }
 
-disableAllButtons();
+toggleButtons(true);
 
 startGame.addEventListener("click", startServices);
 
@@ -25,17 +25,14 @@ function startServices() {
     alert("Let's ROCK!");
     startGame.textContent = "STOP GAME";
     startGame.style.backgroundColor = 'red';
-    
+
     //removing eventlisteners to not duplicate the calls
     startGame.removeEventListener("click", startServices);
 
     startGame.addEventListener("click", stopServices);
 
     // Enable all buttons
-    const allButtons = document.querySelectorAll("button");
-    allButtons.forEach((button) => {
-        button.disabled = false;
-    });
+    toggleButtons(false);
 
     // This space is reserved for retrievieng the Number of Rounds from the DB
     //Temporary code
@@ -58,12 +55,7 @@ function stopServices() {
     startGame.addEventListener("click", startServices);
 
     // Disable all other buttons on the page
-    const allButtons = document.querySelectorAll("button");
-    allButtons.forEach((button) => {
-        if (button !== startGame) {
-            button.disabled = true;
-        }
-    });
+    toggleButtons(true);
 }
 
 function playRound() {
@@ -77,6 +69,7 @@ function playRound() {
             playersChoice = playersChoiceContent;
             showComputerChoice();
 
+            playersChoice = playersChoice.toLowerCase();
             if (pcChoice != "") {
                 if (playersChoice == pcChoice) {
                     alert("No one wins, it's a TIE");
@@ -106,7 +99,7 @@ function playRound() {
 function showComputerChoice() {
     const computerChoice = getComputerChoice();
     alert(`Computer threw ${computerChoice}`);
-    var pcChoiceAnimation = document.querySelector("#computer-choice-animation");
+    let pcChoiceAnimation = document.querySelector("#computer-choice-animation");
     pcChoiceAnimation.innerHTML = ""; // Clearing any previous animations
     const imgElement = document.createElement('img');
     imgElement.classList.add("pc-choice-img");
@@ -127,7 +120,7 @@ function getRandom(a) {
 
 function getComputerChoice() {
     const randomNumber = getRandom(3);
-    var computerInput = 0;
+    let computerInput = 0;
     switch (randomNumber) {
         case 0:
             computerInput = `rock`;
