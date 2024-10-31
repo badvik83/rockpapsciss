@@ -53,8 +53,9 @@ startGame.addEventListener("click", startServices);
 
 function startServices() {
     alert("Let's ROCK!");
-    startGame.textContent = "STOP GAME";
-    startGame.style.backgroundColor = 'red';
+
+    const glowingText = startGame.querySelector('.glowing-txt');
+    glowingText.innerHTML = "S<span class='faulty-letter'>T</span>OP";
 
     //removing eventlisteners to not duplicate the calls
     startGame.removeEventListener("click", startServices);
@@ -78,8 +79,10 @@ function startServices() {
 
 function stopServices() {
     alert("Game Stopped");
-    startGame.textContent = "START GAME";
-    startGame.style.backgroundColor = 'green';
+
+    const glowingText = document.querySelector('.glowing-txt');
+    glowingText.innerHTML = "S<span class='faulty-letter'>T</span>ART";
+
     //removing eventlisteners to not duplicate the calls
     startGame.removeEventListener("click", stopServices);
     startGame.addEventListener("click", startServices);
@@ -135,11 +138,11 @@ function showComputerChoice() {
     imgElement.classList.add("pc-choice-img");
 
     if (computerChoice === "rock") {
-        imgElement.src = "./images/rock_bg.png";
+        imgElement.src = "./images/rock_image.jpg";
     } else if (computerChoice === "paper") {
-        imgElement.src = "./images/paper_bg.png";
+        imgElement.src = "./images/paper_image.jpg";
     } else if (computerChoice === "scissors") {
-        imgElement.src = "./images/scissors_bg.png";
+        imgElement.src = "./images/scissors_image.jpg";
     }
     pcChoiceAnimation.appendChild(imgElement);
 }

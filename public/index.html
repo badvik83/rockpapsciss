@@ -12,25 +12,21 @@
     <div class="main-page">
         <div class="game-field">
         <div class="login-container">
-            <form id="login-form">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-
-                <label for="password">Password:</label>
-                <input type="text" id="password" name="password" required>
-
-                <button type="submit" id="login-btn">Login</button>
+            <form id="login-form" action="/login" method="POST">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
             </form>
-            <div id="'login-error">Invalid username or password</div>
         </div>
             <div class="header">
                 <h1>Let's play</h1>
                 <h1>Rock, Paper, Scissors</h1>
-                <button id="start-btn" class="start-button">START GAME</button>
+                <button id="start-btn" class="start-button">
+                    <span class='glowing-txt'>S<span class='faulty-letter'>T</span>ART</span></button>
             </div>
             <div class="intro-info">
                 <div class="intro-header">
-                    <h2>Round # </h2>
+                    <h1>Round # </h1>
                 </div>
                 <h2 id="current-score"></h2>
             </div>
@@ -38,15 +34,15 @@
                 <div class="player-field">
                     <h2>Choose your play</h2>
                     <div class="selection-buttons">
-                        <img class="selection-images" src="./images/rock_bg.png">
+                        <img class="selection-images" src="./images/rock_image.jpg">
                         <button class="rps-buttons">Rock</button>
                     </div>
                     <div class="selection-buttons">
-                        <img class="selection-images" src="./images/paper_bg.png">
+                        <img class="selection-images" src="./images/paper_image.jpg">
                         <button class="rps-buttons">Paper</button>
                     </div>
                     <div class="selection-buttons">
-                        <img class="selection-images" src="./images/scissors_bg.png">
+                        <img class="selection-images" src="./images/scissors_image.jpg">
                         <button class="rps-buttons">Scissors</button>
                     </div>
                 </div>

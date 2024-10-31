@@ -10,4 +10,18 @@ const pool = new Pool({
     port: 5432,
 });
 
-module.exports = pool;
+// Function to retrieve a user by their username
+async function getUser(username) {
+    const query = 'SELECT * FROM users WHERE username = $1';
+    try {
+        const res = await pool.query(query, [username]);
+        return res.rows[0]; // Returning the user if found
+    } catch (err) {
+        console.error('Error fetching user', err);
+        throw err;
+    }
+}
+
+
+// Exporting functions for use in app.js
+module.exports = { pool, getUser };
